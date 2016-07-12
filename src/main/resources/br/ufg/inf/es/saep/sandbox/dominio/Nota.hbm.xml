@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.ufg.inf.es.saep.sandbox.dominio.Nota" table="NOTA">
+		<id column="ID" type="java.lang.String">
+			<generator class="uuid" />
+		</id>
+		<property name="justificativa" type="java.lang.String" access="field">
+            <column name="JUSTIFICATIVA" />
+        </property>
+		<many-to-one name="original" column="ORIGINAL_ID" unique="true" access="field" 
+      			class="br.ufg.inf.es.saep.sandbox.dominio.Avaliavel" cascade="save-update"/>
+		<many-to-one name="novo" column="NOVO_ID" unique="true" access="field"
+      			class="br.ufg.inf.es.saep.sandbox.dominio.Avaliavel" cascade="save-update"/>
+		
+
+	</class>
+</hibernate-mapping>

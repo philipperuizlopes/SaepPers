@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.ufg.inf.es.saep.sandbox.dominio.Avaliavel" table="AVALIAVEL">
+		<id column="ID" type="java.lang.String">
+			<generator class="uuid" />
+		</id>
+		<discriminator column="TYPE" type="java.lang.String" />
+		<subclass name="br.ufg.inf.es.saep.sandbox.dominio.Relato"
+			discriminator-value="RELATO">
+			<property name="tipo" type="java.lang.String" access="field">
+				<column name="TIPO"/>
+			</property>
+			<map name="valores" table="VALOR_RELATO" access="field" cascade="all" >
+				<key column="RELATO_ID" />
+				<index column="ATRIBUTO" type="java.lang.String" />
+				<one-to-many class="br.ufg.inf.es.saep.sandbox.dominio.Valor" />
+			</map>
+		</subclass>
+		<subclass name="br.ufg.inf.es.saep.sandbox.dominio.Pontuacao"
+			discriminator-value="PONTUACAO">
+			<property name="atributo" type="java.lang.String" access="field">
+				<column name="ATRIBUTO" />
+			</property>
+			<many-to-one name="valor" column="VALOR_ID" unique="true" access="field"
+       			class="br.ufg.inf.es.saep.sandbox.dominio.Valor" cascade="all"/>
+		</subclass>
+
+	</class>
+</hibernate-mapping>

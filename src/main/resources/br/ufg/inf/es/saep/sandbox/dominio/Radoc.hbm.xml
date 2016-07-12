@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="br.ufg.inf.es.saep.sandbox.dominio.Radoc" table="RADOC">
+        <id name="id" type="java.lang.String" access="field">
+            <column name="ID" />
+        </id>
+        <property name="anoBase" type="int" access="field">
+            <column name="ANO_BASE" length="4" />
+        </property>
+        <bag name="relatos" cascade="all-delete-orphan" access="field">
+        	<key column="RADOC_ID"/>
+        	<one-to-many class="br.ufg.inf.es.saep.sandbox.dominio.Relato"/>
+        </bag>
+    </class>
+</hibernate-mapping>

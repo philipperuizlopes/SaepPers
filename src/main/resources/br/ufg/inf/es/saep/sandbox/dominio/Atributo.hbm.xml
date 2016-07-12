@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="br.ufg.inf.es.saep.sandbox.dominio.Atributo" table="ATRIBUTO">
+        <id column="ID"  type="java.lang.String" >
+        	<generator class="uuid"/>
+       	</id>
+       	<property name="nome" type="java.lang.String" access="field">
+            <column name="NOME" />
+        </property>
+       	<property name="tipo" type="int" access="field">
+            <column name="TIPO" />
+        </property>
+        <property name="descricao" type="java.lang.String" access="field">
+            <column name="DESCRICAO" />
+        </property>
+    </class>
+</hibernate-mapping>

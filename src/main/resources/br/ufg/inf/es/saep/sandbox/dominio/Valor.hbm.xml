@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="br.ufg.inf.es.saep.sandbox.dominio.Valor" table="VALOR">
+        <id column="ID"  type="java.lang.String" >
+        	<generator class="uuid"/>
+       	</id>
+        <property name="logico" type="yes_no" access="field">
+            <column name="LOGICO" />
+        </property>
+        <property name="string" type="java.lang.String" access="field">
+            <column name="STRING" />
+        </property>
+        <property name="real" type="float" access="field">
+            <column name="REAL" />
+        </property>
+    </class>
+</hibernate-mapping>

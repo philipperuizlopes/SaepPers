@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="br.ufg.inf.es.saep.sandbox.dominio.Regra" table="REGRA">
+        <id column="ID"  type="java.lang.String" >
+        	<generator class="uuid"/>
+       	</id>
+       	<property name="variavel" type="java.lang.String" access="field">
+            <column name="VARIAVEL" />
+        </property>
+       	<property name="tipo" type="int" access="field">
+            <column name="TIPO" />
+        </property>
+        <property name="descricao" type="java.lang.String" access="field">
+            <column name="DESCRICAO" />
+        </property>
+        <property name="valorMaximo" type="float" access="field">
+            <column name="VALOR_MAXIMO" />
+        </property>
+        <property name="valorMinimo" type="float" access="field">
+            <column name="VALOR_MINIMO" />
+        </property>
+        <property name="expressao" type="java.lang.String" access="field">
+            <column name="EXPRESSAO" />
+        </property>
+        <property name="entao" type="java.lang.String" access="field">
+            <column name="ENTAO" />
+        </property>
+        <property name="senao" type="java.lang.String" access="field">
+            <column name="SENAO" />
+        </property>
+        <property name="tipoRelato" type="java.lang.String" access="field">
+            <column name="TIPO_RELATO" />
+        </property>
+        <property name="pontosPorItem" type="float" access="field">
+            <column name="PONTOS_POR_ITEM" />
+        </property>
+        <bag name="dependeDe" cascade="all" access="field">
+        	<key column="REGRA_ID"/>
+        	<element column="ATRIBUTO" type="java.lang.String" />
+        </bag>
+    </class>
+</hibernate-mapping>
