@@ -22,7 +22,7 @@ import br.ufg.inf.es.saep.sandbox.util.HibernateUtil;
 
 public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public Resolucao byId(String id) {
 		Session session = HibernateUtil.getSession();
@@ -83,7 +83,7 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 		return regras;
 	}
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public String persiste(Resolucao resolucao) {
 		if (resolucao.getId() == null || resolucao.getId().trim().isEmpty()) {
@@ -108,7 +108,7 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 		return resolucao.getId();
 	}
 
-	@Override
+	
 	public boolean remove(String identificador) {
 		Session session = HibernateUtil.getSession();
 
@@ -124,7 +124,7 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 		return false;
 	}
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public List<String> resolucoes() {
 		Session session = HibernateUtil.getSession();
@@ -139,7 +139,7 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 		return ids;
 	}
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public void persisteTipo(Tipo tipo) {
 		Session session = HibernateUtil.getSession();
@@ -159,7 +159,7 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 		session.close();
 	}
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public void removeTipo(String codigo) {
 		Session session = HibernateUtil.getSession();
@@ -173,14 +173,18 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 			throw new ResolucaoUsaTipoException("");
 		}
 
-		session.beginTransaction();
 		Tipo tipo = tipoPeloCodigo(codigo);
-		session.delete(tipo);
-		session.getTransaction().commit();
+		if (tipo != null) {
+			session.beginTransaction();
+			session.delete(tipo);
+			session.getTransaction().commit();
+			session.close();
+			return;
+		}
 		session.close();
 	}
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public Tipo tipoPeloCodigo(String codigo) {
 		Session session = HibernateUtil.getSession();
@@ -208,7 +212,7 @@ public class ResolucaoRepositoryImpl implements ResolucaoRepository {
 		return null;
 	}
 
-	@Override
+	
 	@SuppressWarnings("unchecked")
 	public List<Tipo> tiposPeloNome(String nome) {
 		Session session = HibernateUtil.getSession();
